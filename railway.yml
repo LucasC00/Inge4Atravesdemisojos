@@ -1,0 +1,6 @@
+services:
+  app:
+    port: 8080
+    builder: railway/php-builder
+    env:
+      PHP_VERSION: "8.2"

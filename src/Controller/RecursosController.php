@@ -104,7 +104,7 @@ class RecursosController {
 
     private function conectarBaseDatos() {
         try {
-            return new PDO("pgsql:host=localhost;dbname=a_traves_de_mis_ojos", "postgres", "12345");
+            return new PDO("pgsql:host=ep-round-fire-a52lahae.us-east-2.aws.neon.fl0.io;dbname=atravesdemisojos", "fl0user", "IuKj5nyhm8qM");
         } catch (PDOException $e) {
             $mensajeError = "Error al conectar a la base de datos: ({$e->getCode()}) {$e->getMessage()} en línea {$e->getLine()}";
             error_log($mensajeError, 3, "error_log.txt");

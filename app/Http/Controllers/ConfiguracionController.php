@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\DB; // Importa la clase DB
 
 class ConfiguracionController extends Controller
 {
-    public function showRegistro()
+    public function showConfiguracion()
     {
         return view('configuracion');
     }
 
-    public function registrarUsuario(Request $request)
+    public function configurarUsuario(Request $request)
     {
         $nombreusuariosession= session('nombreusuariosession');
         // Validamos los datos del formulario

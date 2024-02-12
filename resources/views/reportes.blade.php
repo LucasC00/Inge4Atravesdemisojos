@@ -41,44 +41,31 @@
 
     </nav>
 
-    <main>
+      <main>
 
         <article>
-            <h2>Objetivo</h2>
+            <h2>Reportes</h2>
 
-            <p>El proyecto consiste en desarrollar un sitio web que aborde la temática de la discapacidad
-                visual, proporcionando información valiosa tanto para personas con discapacidad visual
-                como para aquellas sin esta condición. El sitio se centra en la interacción entre los
-                usuarios, permitiéndoles hacer preguntas, compartir respuestas y votar sobre contenidos
-                relacionados con la ceguera.</p>
+            <h3>Últimos 5 Usuarios Registrados</h3>
+            <ul>
+                @foreach($usuarios as $usuario)
+                <li>{{ $usuario->nombre }}</li>
+                @endforeach
+            </ul>
 
-            <h2>Guia del sistema</h2>
+            <h3>Últimos 5 Artículos Interesantes</h3>
+            <ul>
+                @foreach($articulos as $articulo)
+                <li>{{ $articulo->titulo }}</li>
+                @endforeach
+            </ul>
 
-            <h3>1. Preguntas y respuestas</h3>
-            <p>
-                En esta sección, puedes hacer preguntas sobre la discapacidad visual y obtener respuestas de la
-                comunidad.
-            </p>
-
-            <h3>2. Recursos externos</h3>
-            <p>
-                Encuentra artículos interesantes relacionados con la discapacidad visual y otros temas relevantes.
-            </p>
-
-            <h3>3. Ideas innovadoras</h3>
-            <p>
-                Explora ideas innovadoras y soluciones relacionadas con la discapacidad visual en esta sección.
-            </p>
-
-            <h3>4. Reportes</h3>
-            <p>
-                Accede a informes y reportes sobre la discapacidad visual, usuarios, logros, etc .
-            </p>
-
-            <h3>5. Configuración de usuario</h3>
-            <p>
-                Personalizar tu perfil y configurar tus preferencias de usuario.
-            </p>
+            <h3>Últimos 5 Recursos Externos</h3>
+            <ul>
+                @foreach($recursos as $recurso)
+                <li>{{ $recurso->nombre }}</li>
+                @endforeach
+            </ul>
         </article>
 
         <aside>
@@ -87,7 +74,7 @@
             <ul>
                 <li><a href="#">Preguntas y respuestas</a></li>
                 <li><a href="{{route('recursos-externos')}}">Recursos Externos</a></li>
-                <li><a href="{{ route('reportes') }}">Reportes</a></li>
+                <li><a href="#">Reportes</a></li>
             </ul>
         </aside>
 

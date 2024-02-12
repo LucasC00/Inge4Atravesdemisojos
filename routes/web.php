@@ -25,3 +25,6 @@ Route::get('/recursos-externos', [RecursosController::class, 'mostrarRecursosExt
 // Rutas - ConfiguracionController
 Route::get('/configuracion-usuario', [ConfiguracionController::class, 'showConfiguracion'])->name('configuracion-usuario');
 Route::post('/configuracion-realizar', [ConfiguracionController::class, 'configurarUsuario'])->name('configuracion-realizar');
+
+// Rutas - ReportesController
+Route::get('/reportes', 'ReportesController@mostrarTodosLosReportes')->name('reportes');

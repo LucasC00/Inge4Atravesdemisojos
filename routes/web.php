@@ -20,7 +20,7 @@ Route::get('/registro-usuario', [RegistroController::class, 'showRegistro'])->na
 Route::post('/registro-realizar', [RegistroController::class, 'registrarUsuario'])->name('registro-realizar');
 
 // Rutas - RecursosController
-Route::get('/recursos-externos', [RecursosController::class, 'imprimirHTML'])->name('recursos-externos');
+Route::get('/recursos-externos', [RecursosController::class, 'mostrarRecursosExternos'])->name('recursos-externos');
 
 // Rutas - ConfiguracionController
 Route::get('/configuracion-usuario', [ConfiguracionController::class, 'showConfiguracion'])->name('configuracion-usuario');

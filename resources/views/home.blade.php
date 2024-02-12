@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>My page title</title>
+    <title>Home</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300%7CSonsie+One" rel="stylesheet"
         type="text/css">
     <link rel="stylesheet" href="/styles.css">
@@ -86,8 +86,7 @@
 
             <ul>
                 <li><a href="#">Preguntas y respuestas</a></li>
-                <li><a href="#">Recursos Externos</a></li>
-                <li><a href="#">Ideas innovadoras</a></li>
+                <li><a href="{{route('recursos-externos')}}">Recursos Externos</a></li>
                 <li><a href="#">Reportes</a></li>
             </ul>
         </aside>

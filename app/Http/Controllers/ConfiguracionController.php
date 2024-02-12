@@ -15,50 +15,54 @@ class ConfiguracionController extends Controller
 
     public function configurarUsuario(Request $request)
     {
-        $nombreusuariosession= session('nombreusuariosession');
-        // Validamos los datos del formulario
+        $nombreusuariosession = session('nombreusuariosession');
+
         // Recibe los datos del formulario enviado por POST
         $nombreUsuario = $request->input('nombreUsuario');
         $correo = $request->input('correo');
         $edad = $request->input('edad');
         $sexo = $request->input('sexo');
         $biografia = $request->input('biografia');
-        $discapacidadVisual = $request->has('discapacidadVisual') ? true : false;
+        $discapacidadVisual = $request->has('discapacidadVisual'); // Verifica si el checkbox está marcado
         $contrasena = $request->input('contrasena');
 
-        // Construimos la consulta de actualización
-        $result = DB::table('usuarios')
-        ->where('nombre_usuario', $nombreusuariosession)
-        ->when(!empty($nombreUsuario), function ($query) use ($nombreUsuario) {
-            return $query->update(['nombre_usuario' => $nombreUsuario]);
-        })
-        ->when(!empty($correo), function ($query) use ($correo) {
-            return $query->update(['correo' => $correo]);
-        })
-        ->when(!empty($edad), function ($query) use ($edad) {
-            return $query->update(['edad' => $edad]);
-        })
-        ->when(!empty($sexo), function ($query) use ($sexo) {
-            return $query->update(['sexo' => $sexo]);
-        })
-        ->when(!empty($biografia), function ($query) use ($biografia) {
-            return $query->update(['biografia' => $biografia]);
-        })
-        ->when($request->has('discapacidadVisual'), function ($query) use ($discapacidadVisual) {
-            return $query->update(['discapacidad_visual' => $discapacidadVisual]);
-        })
-        ->when(!empty($contrasena), function ($query) use ($contrasena) {
-            return $query->update(['contrasena' => $contrasena]);
-        });
+        // Construir la consulta de actualización
+        $query = DB::table('usuarios')
+            ->where('nombre_usuario', $nombreusuariosession);
 
+        // Agregar condiciones de actualización basadas en si los campos están presentes
+        if (!empty($nombreUsuario)) {
+            $query->update(['nombre_usuario' => $nombreUsuario]);
+        }
+        if (!empty($correo)) {
+            $query->update(['correo' => $correo]);
+        }
+        if (!empty($edad)) {
+            $query->update(['edad' => $edad]);
+        }
+        if (!empty($sexo)) {
+            $query->update(['sexo' => $sexo]);
+        }
+        if (!empty($biografia)) {
+            $query->update(['biografia' => $biografia]);
+        }
+        $query->update(['discapacidad_visual' => $discapacidadVisual]); // Actualiza la discapacidad visual
+        if (!empty($contrasena)) {
+            $query->update(['contrasena' => $contrasena]);
+        }
 
-        if ($result) {
-            // Actualizar el usuario en la sesión si el nombre de usuario cambió
+        // Ejecutar la consulta de actualización
+        $result = $query->update();
+
+        // Verificar el resultado y realizar la redirección correspondiente
+        if ($result !== false) {
+            // Actualización exitosa
             if ($nombreusuariosession && $nombreusuariosession !== $nombreUsuario) {
                 session(['nombreusuariosession' => $nombreUsuario]);
             }
             return redirect()->route('home')->with('success', 'Configuraciones del usuario actualizado exitosamente.');
         } else {
+            // Error durante la actualización
             return redirect()->route('login')->with('error', 'Error al configurar usuario');
         }
     }

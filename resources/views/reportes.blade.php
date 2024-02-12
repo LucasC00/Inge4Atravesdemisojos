@@ -45,11 +45,12 @@
 
         <article>
             <h2>Reportes</h2>
+            <hr>
 
             <h3>Últimos 5 Usuarios Registrados</h3>
             <ul>
                 @foreach($usuarios as $usuario)
-                <li>{{ $usuario->nombre }}</li>
+                <li>{{ $usuario->nombre_usuario }}</li>
                 @endforeach
             </ul>
 
@@ -63,7 +64,7 @@
             <h3>Últimos 5 Recursos Externos</h3>
             <ul>
                 @foreach($recursos as $recurso)
-                <li>{{ $recurso->nombre }}</li>
+                <li>{{ $recurso->titulo }}</li>
                 @endforeach
             </ul>
         </article>

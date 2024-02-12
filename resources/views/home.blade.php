@@ -85,7 +85,7 @@
             <h2>Secciones</h2>
 
             <ul>
-                <li><a href="{{route('preguntasyrespuestas')}}">Preguntas y respuestas</a></li>
+                <li><a href="#">Preguntas y respuestas</a></li>
                 <li><a href="{{route('recursos-externos')}}">Recursos Externos</a></li>
                 <li><a href="#">Reportes</a></li>
             </ul>

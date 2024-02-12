@@ -10,7 +10,7 @@ class RecursosController extends Controller
     {
         $recursos = $this->obtenerRecursosExternos();
 
-        return view('recursos.externos', ['recursos' => $recursos]);
+        return view('externos', ['recursos' => $recursos]);
     }
 
     private function obtenerRecursosExternos()

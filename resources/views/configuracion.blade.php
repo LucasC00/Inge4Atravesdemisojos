@@ -23,7 +23,6 @@
     <nav>
         <ul>
             <li><a href="{{route('home')}}">Inicio</a></li>
-            <li><a href="#">Quienes somos</a></li>
             <li><a href="{{route('configuracion-usuario')}}"><img src="/icono-tuerca.png" alt="Icono de Configuración" width="50" height="50"
                         style="
         width: 16px;

@@ -22,7 +22,6 @@
 
     <nav>
         <ul>
-            <li><a href="#">Quienes somos</a></li>
             <li><a href="{{route('login')}}"><img src="/icono-logout.png" alt="Icono de Salir" width="50" height="50"
                         style="
         width: 16px;

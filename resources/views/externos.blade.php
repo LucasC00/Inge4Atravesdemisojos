@@ -24,7 +24,6 @@
 <nav>
     <ul>
         <li><a href="{{route('home')}}">Inicio</a></li>
-        <li><a href="#">Quiénes somos</a></li>
         <li>
             <a href="{{route('configuracion-usuario')}}">
                 <img src="/icono-tuerca.png" alt="Icono de Configuración" width="50" height="50" style="
@@ -63,9 +62,8 @@
     <aside>
         <h2>Secciones</h2>
         <ul>
-            <li><a href="#">Preguntas y respuestas</a></li>
             <li><a href="{{route('recursos-externos')}}">Recursos externos</a></li>
-            <li><a href="#">Reportes</a></li>
+            <li><a href="{{ route('reportes') }}">Reportes</a></li>
         </ul>
     </aside>
 </main>

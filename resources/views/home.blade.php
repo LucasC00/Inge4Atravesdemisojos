@@ -23,7 +23,6 @@
     <nav>
         <ul>
             <li><a href="{{route('home')}}">Inicio</a></li>
-            <li><a href="#">Quienes somos</a></li>
             <li><a href="{{route('configuracion-usuario')}}"><img src="/icono-tuerca.png" alt="Icono de Configuración" width="50" height="50" style="
         width: 16px;
         height: 16px;
@@ -54,28 +53,17 @@
 
             <h2>Guia del sistema</h2>
 
-            <h3>1. Preguntas y respuestas</h3>
-            <p>
-                En esta sección, puedes hacer preguntas sobre la discapacidad visual y obtener respuestas de la
-                comunidad.
-            </p>
-
-            <h3>2. Recursos externos</h3>
+            <h3>1. Recursos externos</h3>
             <p>
                 Encuentra artículos interesantes relacionados con la discapacidad visual y otros temas relevantes.
             </p>
 
-            <h3>3. Ideas innovadoras</h3>
+            <h3>2. Reportes</h3>
             <p>
-                Explora ideas innovadoras y soluciones relacionadas con la discapacidad visual en esta sección.
+                Accede a informes y reportes sobre usuarios, recursos externos, etc .
             </p>
 
-            <h3>4. Reportes</h3>
-            <p>
-                Accede a informes y reportes sobre la discapacidad visual, usuarios, logros, etc .
-            </p>
-
-            <h3>5. Configuración de usuario</h3>
+            <h3>3. Configuración de usuario</h3>
             <p>
                 Personalizar tu perfil y configurar tus preferencias de usuario.
             </p>
@@ -85,7 +73,6 @@
             <h2>Secciones</h2>
 
             <ul>
-                <li><a href="#">Preguntas y respuestas</a></li>
                 <li><a href="{{route('recursos-externos')}}">Recursos Externos</a></li>
                 <li><a href="{{ route('reportes') }}">Reportes</a></li>
             </ul>

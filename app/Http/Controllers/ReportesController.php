@@ -14,10 +14,10 @@ class ReportesController extends Controller
         $usuarios = Usuario::orderBy('fecha_registro', 'desc')->take(5)->get();
         
         // Lógica para obtener los últimos 5 artículos interesantes
-        $articulos = Articulo::orderBy('created_at', 'desc')->take(5)->get();
+        $articulos = Articulo::orderBy('id', 'desc')->take(5)->get();
         
         // Lógica para obtener los últimos 5 recursos externos
-        $recursos = RecursoExterno::orderBy('created_at', 'desc')->take(5)->get();
+        $recursos = RecursoExterno::orderBy('id', 'desc')->take(5)->get();
         
         return view('reportes', compact('usuarios', 'articulos', 'recursos'));
     }

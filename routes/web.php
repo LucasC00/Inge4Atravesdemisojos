@@ -6,6 +6,7 @@ use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RecursosController;
 use App\Http\Controllers\ConfiguracionController;
+use App\Http\Controllers\ReportesController;
 
 // Rutas HomeController
 Route::get('/', [HomeController::class, 'index']);
@@ -27,4 +28,4 @@ Route::get('/configuracion-usuario', [ConfiguracionController::class, 'showConfi
 Route::post('/configuracion-realizar', [ConfiguracionController::class, 'configurarUsuario'])->name('configuracion-realizar');
 
 // Rutas - ReportesController
-Route::get('/reportes', 'ReportesController@mostrarTodosLosReportes')->name('reportes');
+Route::get('/reportes', [ReportesController::class, 'mostrarTodosLosReportes'])->name('reportes');

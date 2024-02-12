@@ -1,83 +1,70 @@
 <?php
-session_start(); // Iniciar la sesión
 
-class ConfiguracionController {
-    public function showConfiguracion() {
-        include __DIR__ . '/../views/configuracion.php';
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash; // Importa la clase Hash
+use Illuminate\Support\Facades\DB; // Importa la clase DB
+
+class ConfiguracionController extends Controller
+{
+    public function showRegistro()
+    {
+        return view('configuracion');
     }
 
-    public function configurarUsuario() {
-        require __DIR__ . '/../../config/conexion.php';
+    public function registrarUsuario(Request $request)
+    {
+        $nombreusuariosession= session('nombreusuariosession');
+        // Validamos los datos del formulario
+        // Recibe los datos del formulario enviado por POST
+        $nombreUsuario = $request->input('nombreUsuario');
+        $correo = $request->input('correo');
+        $edad = $request->input('edad');
+        $sexo = $request->input('sexo');
+        $biografia = $request->input('biografia');
+        $discapacidadVisual = $request->has('discapacidadVisual') ? true : false;
+        $contrasena = $request->input('contrasena');
 
-        // Verificar si el usuario ha iniciado sesión
-        if (!isset($_SESSION['nombre_usuario'])) {
-            // Redirigir al usuario al inicio de sesión si no ha iniciado sesión
-            header('Location: /login');
-            exit;
+        // Construir el array de campos a actualizar
+        $camposActualizar = [];
+        if (!empty($nombreUsuario)) {
+            $camposActualizar['nombre_usuario'] = $nombreUsuario;
+        }
+        if (!empty($correo)) {
+            $camposActualizar['correo'] = $correo;
+        }
+        if (!empty($edad)) {
+            $camposActualizar['edad'] = $edad;
+        }
+        if (!empty($sexo)) {
+            $camposActualizar['sexo'] = $sexo;
+        }
+        if (!empty($biografia)) {
+            $camposActualizar['biografia'] = $biografia;
+        }
+        $camposActualizar['discapacidad_visual'] = $discapacidadVisual;
+        if (!empty($contrasena)) {
+            $camposActualizar['contrasena'] = $contrasena;
+        }
+        // Verificar si hay campos para actualizar
+        if (empty($camposActualizar)) {
+            return redirect()->route('home')->with('warning', 'No se proporcionaron campos para actualizar.');
         }
 
-        // Obtener el nombre de usuario del usuario actualmente autenticado
-        $nombreUsuarioLogueado = $_SESSION['nombre_usuario'];
+        // Actualizar los datos del usuario en la base de datos
+        $result = DB::table('usuarios')
+            ->where('nombre_usuario', $nombreUsuario)
+            ->update($camposActualizar);
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Recoger los datos del formulario
-            $camposActualizar = [];
-        
-            if (!empty($_POST['nombreUsuario'])) {
-                $nombreUsuario = $_POST['nombreUsuario'];
-                $camposActualizar[] = "nombre_usuario = '$nombreUsuario'";
+        if ($result) {
+            // Actualizar el usuario en la sesión si el nombre de usuario cambió
+            if ($nombreusuariosession && $nombreusuariosession !== $nombreUsuario) {
+                session(['nombreusuariosession' => $nombreUsuario]);
             }
-            if (!empty($_POST['correo'])) {
-                $correo = $_POST['correo'];
-                $camposActualizar[] = "correo = '$correo'";
-            }
-            if (!empty($_POST['edad'])) {
-                $edad = $_POST['edad'];
-                $camposActualizar[] = "edad = $edad";
-            }
-            if (!empty($_POST['sexo'])) {
-                $sexo = $_POST['sexo'];
-                $camposActualizar[] = "sexo = '$sexo'";
-            }
-            if (!empty($_POST['biografia'])) {
-                $biografia = $_POST['biografia'];
-                $camposActualizar[] = "biografia = '$biografia'";
-            }
-            
-            $discapacidadVisual = isset($_POST["discapacidadVisual"]) ? "true" : "false";
-            $camposActualizar[] = "discapacidad_visual = '$discapacidadVisual'";
-            
-        
-            // Verificar si se han enviado campos para actualizar
-            if (empty($camposActualizar)) {
-                echo "No se han proporcionado campos para actualizar.";
-                exit;
-            }
-        
-            // Construir la parte SET de la consulta SQL
-            $setPart = implode(", ", $camposActualizar);
-        
-            // Preparar la consulta para actualizar datos en la tabla usuarios
-            $query = "UPDATE usuarios SET $setPart WHERE nombre_usuario = '$nombreUsuarioLogueado'";
-        
-            // Ejecutar la consulta
-            $result = pg_query($conexion, $query);
-        
-
-            if ($result) {
-                if (!empty($_POST['nombreUsuario'])) {
-                    $_SESSION['nombre_usuario'] = $nombreUsuario; // Corregir el nombre de la variable
-                }
-                header('Location: /home');
-                exit; // Terminar el script después de redireccionar
-                
-            } else {
-                echo "Error al actualizar usuario: " . pg_last_error($conexion); // Mostrar el error de PostgreSQL
-            }
-
-            // Cerrar la conexión a la base de datos
-            pg_close($conexion);
+            return redirect()->route('home')->with('success', 'Configuraciones del usuario actualizado exitosamente.');
+        } else {
+            return redirect()->route('home')->with('error', 'Error al configurar usuario');
         }
     }
 }
-?>

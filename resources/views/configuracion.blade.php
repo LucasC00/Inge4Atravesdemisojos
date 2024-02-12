@@ -7,14 +7,14 @@
     <title>My page title</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300%7CSonsie+One" rel="stylesheet"
         type="text/css">
-    <link rel="stylesheet" href="../../public/css/style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
 
     <header>
         <div class="header-content">
-            <img src="../../public/img/icono-principal.png" alt="Icono de Configuración" width="90" height="90">
+            <img src="/icono-principal.png" alt="Icono Principal" width="90" height="90">
             <h1>A través de mis ojos</h1>
         </div>
     </header>
@@ -22,15 +22,15 @@
 
     <nav>
         <ul>
-            <li><a href="#">Inicio</a></li>
+            <li><a href="{{route('home')}}">Inicio</a></li>
             <li><a href="#">Quienes somos</a></li>
-            <li><a href="#"><img src="../../public/img/icono-tuerca.png" alt="Icono de Configuración" width="50" height="50"
+            <li><a href="{{route('configuracion-usuario')}}"><img src="/icono-tuerca.png" alt="Icono de Configuración" width="50" height="50"
                         style="
         width: 16px;
         height: 16px;
         margin-top: 15p;
         "> Configuración</a></li>
-            <li><a href="/login"><img src="../../public/img/icono-logout.png" alt="Icono de Salir" width="50" height="50"
+            <li><a href="{{route('login')}}"><img src="/icono-logout.png" alt="Icono de Salir" width="50" height="50"
                         style="
         width: 16px;
         height: 16px;
@@ -46,10 +46,10 @@
 
         <article>
             <h2 class="h2-configurar">Configuración de Usuario</h2>
-            <form id="configuracionForm" method="POST" action="/configuracion-realizar" class="form-configurar">
+            <form id="configuracionForm" method="POST" action="{{route('configuracion-realizar')}}" class="form-configurar">
                 <div class="section-configurar">
                     <label for="nombreUsuario">Nombre de Usuario:</label>
-                    <input type="text" id="nombreUsu" name="nombreUsuario" class="input-configurar" >
+                    <input type="text" id="nombreUsuario" name="nombreUsuario" class="input-configurar" >
 
                     <label for="correo">Correo Electrónico:</label>
                     <input type="email" id="correo" name="correo" class="input-configurar" >
@@ -74,8 +74,8 @@
 
                     <!-- Agrega aquí más campos según tus necesidades -->
 
-                    <label>Cambiar Contraseña:</label>
-                    <a href="#" onclick="enviarCorreo()" class="enlace">Al hacer click recibirás el correo</a>
+                    <label for="contrasena">Cambiar Contraseña:</label>
+                    <input id="contrasena" name="contrasena" class="input-configurar"></input>
 
                 </div>
                 <div class="submit-container">
@@ -88,7 +88,8 @@
     </main>
 
     <footer>
-        <p>Aqui pondremos info de redes social y otros enlaces</p>
+        <p>Unete a nuestro grupo de discord</p>
+        <a href="https://discord.gg/4SyUXDnz">Canal</a>
     </footer>
 
 </body>

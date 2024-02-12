@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>My page title</title>
+    <title>Registro</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300%7CSonsie+One" rel="stylesheet"
         type="text/css">
     <link rel="stylesheet" href="/styles.css">
@@ -97,7 +97,8 @@
     </main>
 
     <footer>
-        <p>Aqui pondremos info de redes social y otros enlaces</p>
+        <p>Unete a nuestro grupo de discord</p>
+        <a href="https://discord.gg/4SyUXDnz">Canal</a>
     </footer>
 
 </body>

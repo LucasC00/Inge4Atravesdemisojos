@@ -45,7 +45,7 @@ class ConfiguracionController extends Controller
         }
         $camposActualizar['discapacidad_visual'] = $discapacidadVisual;
         if (!empty($contrasena)) {
-            $camposActualizar['contrasena'] = $contrasena;
+            $camposActualizar['contrasena'] = Hash::make($contrasena);
         }
 
         // Verificar si hay campos para actualizar

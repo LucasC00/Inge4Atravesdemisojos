@@ -15,4 +15,9 @@ class HomeController extends Controller
     {
         return redirect()->route('login');
     }
+
+    public function showHome()
+    {
+        return view('home');
+    }
 }

@@ -14,7 +14,7 @@
         <div class="login-central">
             <div style="display: flex; justify-content: center; align-items: center;">
                 <!-- Utilizamos el helper asset() para cargar la imagen -->
-                <img src="asset(icono-principal.png)" alt="Icono de Entidad" width="90" height="90">
+                <img src="/icono-principal.png" alt="Icono de Entidad" width="90" height="90">
             </div>
             <div class="login" id="login">
                 <div class="login-titulo">

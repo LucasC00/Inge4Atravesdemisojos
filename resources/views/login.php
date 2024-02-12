@@ -6,7 +6,7 @@
     <title>Formulario de Acceso</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Utilizamos el helper asset() para cargar los recursos estáticos (CSS, imágenes, etc.) -->
-    <link rel="stylesheet" href="{!! asset('css/app.css') !!}">
+    <link rel="stylesheet" href="{{ asset('../css/style.css') }}">
 </head>
 
 <body class="login-body">
@@ -14,7 +14,7 @@
         <div class="login-central">
             <div style="display: flex; justify-content: center; align-items: center;">
                 <!-- Utilizamos el helper asset() para cargar la imagen -->
-                <img src="{{ asset('images/icono-principal.png') }}" alt="Icono de Entidad" width="90" height="90">
+                <img src="{{ asset('../images/icono-principal.png') }}" alt="Icono de Entidad" width="90" height="90">
             </div>
             <div class="login" id="login">
                 <div class="login-titulo">

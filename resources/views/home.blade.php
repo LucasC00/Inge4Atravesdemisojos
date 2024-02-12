@@ -7,14 +7,14 @@
     <title>My page title</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300%7CSonsie+One" rel="stylesheet"
         type="text/css">
-    <link rel="stylesheet" href="../../public/css/style.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
 
     <header>
         <div class="header-content">
-            <img src="../../public/img/icono-principal.png" alt="Icono de Configuración" width="90" height="90">
+            <img src="/icono-principal.png" alt="Icono Principal" width="90" height="90">
             <h1>A través de mis ojos</h1>
         </div>
     </header>
@@ -22,14 +22,14 @@
 
     <nav>
         <ul>
-            <li><a href="#">Inicio</a></li>
+            <li><a href="{{route('home')}}">Inicio</a></li>
             <li><a href="#">Quienes somos</a></li>
-            <li><a href="/configuracion-usuario"><img src="../../public/img/icono-tuerca.png" alt="Icono de Configuración" width="50" height="50" style="
+            <li><a href="{{route('configuracion-usuario')}}"><img src="/icono-tuerca.png" alt="Icono de Configuración" width="50" height="50" style="
         width: 16px;
         height: 16px;
         margin-top: 15p;
         "> Configuración</a></li>
-            <li><a href="/login/login.php"><img src="../../public/img/icono-logout.png" alt="Icono de Salir" width="50" height="50"
+            <li><a href="{{route('login')}}"><img src="/icono-logout.png" alt="Icono de Salir" width="50" height="50"
                         style="
         width: 16px;
         height: 16px;
@@ -60,7 +60,7 @@
                 comunidad.
             </p>
 
-            <h3>2. Artículos interesantes</h3>
+            <h3>2. Recursos externos</h3>
             <p>
                 Encuentra artículos interesantes relacionados con la discapacidad visual y otros temas relevantes.
             </p>
@@ -86,8 +86,7 @@
 
             <ul>
                 <li><a href="#">Preguntas y respuestas</a></li>
-                <li><a href="#">Articulos interesantes</a></li>
-                <li><a href="#">Articulos interesantes</a></li>
+                <li><a href="#">Recursos Externos</a></li>
                 <li><a href="#">Ideas innovadoras</a></li>
                 <li><a href="#">Reportes</a></li>
             </ul>
@@ -96,7 +95,8 @@
     </main>
 
     <footer>
-        <p>Aqui pondremos info de redes social y otros enlaces</p>
+        <p>Unete a nuestro grupo de discord</p>
+        <a href="https://discord.gg/4SyUXDnz">Canal</a>
     </footer>
 
 </body>

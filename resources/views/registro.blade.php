@@ -7,14 +7,14 @@
     <title>My page title</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300%7CSonsie+One" rel="stylesheet"
         type="text/css">
-    <link rel="stylesheet" href="../../public/css/style.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
 
     <header>
         <div class="header-content">
-            <img src="../../public/img/icono-principal.png" alt="Icono de Configuración" width="90" height="90">
+            <img src="/icono-principal.png" alt="Icono Principal" width="90" height="90">
             <h1>A través de mis ojos</h1>
         </div>
     </header>
@@ -22,15 +22,8 @@
 
     <nav>
         <ul>
-            <li><a href="#">Inicio</a></li>
             <li><a href="#">Quienes somos</a></li>
-            <li><a href="#"><img src="../../public/img/icono-tuerca.png" alt="Icono de Configuración" width="50" height="50"
-                        style="
-        width: 16px;
-        height: 16px;
-        margin-top: 15p;
-        "> Configuración</a></li>
-            <li><a href="/login"><img src="../../public/img/icono-logout.png" alt="Icono de Salir" width="50" height="50"
+            <li><a href="{{route('login')}}"><img src="/icono-logout.png" alt="Icono de Salir" width="50" height="50"
                         style="
         width: 16px;
         height: 16px;
@@ -46,7 +39,8 @@
 
         <article>
             <h2 class="h2-registrar">Registro de Usuario</h2>
-            <form id="registroForm" method="POST" action="/registro-realizar" class="form-registrar">
+            <form id="registroForm" method="POST" action="{{route('registro-realizar')}}" class="form-registrar">
+                @csrf
                 <div class="section-registrar">
                     <label for="nombreUsuario">Nombre de Usuario:</label>
                     <input type="text" id="nombreUsuario" name="nombreUsuario" class="input-registrar" required>

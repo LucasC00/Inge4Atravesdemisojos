@@ -27,7 +27,7 @@
                     <button type="submit" title="Ingresar" name="Ingresar" class="login-button">Login</button>
                 </form>
                 <div class="login-pie-form">
-                    <a href="{{route('login-autenticar')}}">¿No tienes Cuenta? Regístrate</a>
+                    <a href="{{route('registro-usuario')}}">¿No tienes Cuenta? Regístrate</a>
                 </div>
             </div>
         </div>

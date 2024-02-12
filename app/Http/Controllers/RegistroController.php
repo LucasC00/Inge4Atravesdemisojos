@@ -1,52 +1,55 @@
 <?php
 
-class RegistroController {
-    public function showRegistro() {
-        include __DIR__ . '/../views/registro.php';
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash; // Importa la clase Hash
+use Illuminate\Support\Facades\DB; // Importa la clase DB
+
+class RegistroController extends Controller
+{
+    public function showRegistro()
+    {
+        return view('registro');
     }
 
-    public function registrarusuario(){
-        require __DIR__ . '/../../config/conexion.php';
+    public function registrarUsuario(Request $request)
+    {
+        // Validamos los datos del formulario
+        $request->validate([
+            'nombreUsuario' => 'required|unique:usuarios,nombre_usuario',
+            'nombreReal' => 'required',
+            'correo' => 'required|email|unique:usuarios,correo',
+            'contrasena' => 'required',
+            'discapacidadVisual' => 'nullable|boolean',
+            'sexo' => 'required',
+            'edad' => 'nullable|integer',
+            'biografia' => 'nullable|string',
+            'telefono' => 'nullable|string',
+            'ubicacion' => 'nullable|string',
+            'rol' => 'required|numeric',
+        ]);
 
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Obtener los datos del formulario
-            $nombreUsuario = $_POST["nombreUsuario"];
-            $nombreReal = $_POST["nombreReal"];
-            $correo = $_POST["correo"];
-            $contrasena = $_POST["contrasena"];
-    // Asegúrate de almacenar la contraseña de manera segura, por ejemplo, usando password_hash
-            $hashedContrasena = password_hash($contrasena, PASSWORD_DEFAULT);
+        // Insertar el nuevo usuario en la base de datos
+        $result = DB::table('usuarios')->insert([
+            'nombre_usuario' => $request->nombreUsuario,
+            'nombre_real' => $request->nombreReal,
+            'correo' => $request->correo,
+            'contrasena' => Hash::make($request->contrasena), // Se hashea la contraseña antes de almacenarla
+            'discapacidad_visual' => $request->has('discapacidadVisual') ? true : false, // Convierte a booleano
+            'sexo' => $request->sexo,
+            'edad' => $request->edad,
+            'biografia' => $request->biografia,
+            'numero_telefono' => $request->telefono,
+            'ubicacion' => $request->ubicacion,
+            'id_rol' => $request->rol,
+            'fecha_registro' => now(), // Utiliza la fecha y hora actual
+        ]);
 
-            $discapacidadVisual = isset($_POST["discapacidadVisual"]) ? "true" : "false";
-            $sexo = $_POST["sexo"];
-            $edad = $_POST["edad"];
-            $biografia = $_POST["biografia"];
-            $telefono = $_POST["telefono"];
-            $ubicacion = $_POST["ubicacion"];
-            $rol = $_POST["rol"];
-
-    // Obtener la fecha actual
-            $fechaRegistro = date("Y-m-d");
-
-    // Preparar la consulta SQL
-            $query = "INSERT INTO usuarios (nombre_usuario, nombre_real, correo, contrasena, discapacidad_visual, sexo, edad, fecha_registro, biografia, numero_telefono, ubicacion, id_rol)
-              VALUES ('$nombreUsuario', '$nombreReal', '$correo', '$hashedContrasena', '$discapacidadVisual', '$sexo', $edad, '$fechaRegistro', '$biografia', '$telefono', '$ubicacion', $rol)";
-
-    // Ejecutar la consulta
-            $result = pg_query($conexion, $query);
-
-            if ($result) {
-                $_SESSION['nombre_usuario']=$usuario;
-                header('Location: /login');
-            } else {
-                echo "Error al registrar usuario";
-            }
+        if ($result) {
+            return redirect()->route('login')->with('success', 'Usuario registrado exitosamente. Por favor, inicia sesión.');
         } else {
-            echo "Acceso no autorizado";
+            return redirect()->route('registro-usuario')->with('error', 'Error al registrar usuario');
         }
-
-// Cerrar la conexión a la base de datos
-        pg_close($conexion);
-
     }
 }

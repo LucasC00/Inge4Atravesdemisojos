@@ -14,7 +14,7 @@ class ReportesController extends Controller
         $usuarios = Usuario::orderBy('fecha_registro', 'desc')->take(5)->get();
         
         // Lógica para obtener los últimos 5 artículos interesantes
-        $articulos = Articulo::orderBy('created_at', 'desc')->where('interesante', true)->take(5)->get();
+        $articulos = Articulo::orderBy('created_at', 'desc')->take(5)->get();
         
         // Lógica para obtener los últimos 5 recursos externos
         $recursos = RecursoExterno::orderBy('created_at', 'desc')->take(5)->get();

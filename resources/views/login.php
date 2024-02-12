@@ -21,7 +21,6 @@
                     Bienvenido
                 </div>
                 <form id="loginForm" method="POST" action="{{ route('login-autenticar') }}">
-                    @csrf <!-- Agregamos el token CSRF para protección contra ataques CSRF -->
                     <input type="text" name="usuario" id="usuario" class="login-input" placeholder="Usuario" required>
                     <input type="password" id="password" placeholder="Contraseña" name="password" class="login-input" required>
                     <button type="submit" title="Ingresar" name="Ingresar" class="login-button">Login</button>

@@ -11,13 +11,13 @@ class ReportesController extends Controller
     public function mostrarTodosLosReportes()
     {
         // Lógica para obtener los últimos 5 usuarios registrados
-        $usuarios = Usuario::latest()->take(5)->get();
+        $usuarios = Usuario::orderBy('fecha_registro', 'desc')->take(5)->get();
         
         // Lógica para obtener los últimos 5 artículos interesantes
-        $articulos = Articulo::where('interesante', true)->latest()->take(5)->get();
+        $articulos = Articulo::orderBy('created_at', 'desc')->where('interesante', true)->take(5)->get();
         
         // Lógica para obtener los últimos 5 recursos externos
-        $recursos = RecursoExterno::latest()->take(5)->get();
+        $recursos = RecursoExterno::orderBy('created_at', 'desc')->take(5)->get();
         
         return view('reportes', compact('usuarios', 'articulos', 'recursos'));
     }

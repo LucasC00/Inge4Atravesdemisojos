@@ -26,36 +26,31 @@ class ConfiguracionController extends Controller
         $discapacidadVisual = $request->has('discapacidadVisual') ? true : false;
         $contrasena = $request->input('contrasena');
 
-        // Construir el array de campos a actualizar
-        $camposActualizar = [];
-        if (!empty($nombreUsuario)) {
-            $camposActualizar['nombre_usuario'] = $nombreUsuario;
-        }
-        if (!empty($correo)) {
-            $camposActualizar['correo'] = $correo;
-        }
-        if (!empty($edad)) {
-            $camposActualizar['edad'] = $edad;
-        }
-        if (!empty($sexo)) {
-            $camposActualizar['sexo'] = $sexo;
-        }
-        if (!empty($biografia)) {
-            $camposActualizar['biografia'] = $biografia;
-        }
-        $camposActualizar['discapacidad_visual'] = $discapacidadVisual;
-        if (!empty($contrasena)) {
-            $camposActualizar['contrasena'] = $contrasena;
-        }
-        // Verificar si hay campos para actualizar
-        if (empty($camposActualizar)) {
-            return redirect()->route('home')->with('warning', 'No se proporcionaron campos para actualizar.');
-        }
-
-        // Actualizar los datos del usuario en la base de datos
+        // Construimos la consulta de actualización
         $result = DB::table('usuarios')
-            ->where('nombre_usuario', $nombreusuariosession)
-            ->update($camposActualizar);
+        ->where('nombre_usuario', $nombreusuariosession)
+        ->when(!empty($nombreUsuario), function ($query) use ($nombreUsuario) {
+            return $query->update(['nombre_usuario' => $nombreUsuario]);
+        })
+        ->when(!empty($correo), function ($query) use ($correo) {
+            return $query->update(['correo' => $correo]);
+        })
+        ->when(!empty($edad), function ($query) use ($edad) {
+            return $query->update(['edad' => $edad]);
+        })
+        ->when(!empty($sexo), function ($query) use ($sexo) {
+            return $query->update(['sexo' => $sexo]);
+        })
+        ->when(!empty($biografia), function ($query) use ($biografia) {
+            return $query->update(['biografia' => $biografia]);
+        })
+        ->when($request->has('discapacidadVisual'), function ($query) use ($discapacidadVisual) {
+            return $query->update(['discapacidad_visual' => $discapacidadVisual]);
+        })
+        ->when(!empty($contrasena), function ($query) use ($contrasena) {
+            return $query->update(['contrasena' => $contrasena]);
+        });
+
 
         if ($result) {
             // Actualizar el usuario en la sesión si el nombre de usuario cambió

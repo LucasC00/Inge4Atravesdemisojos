@@ -47,6 +47,7 @@
         <article>
             <h2 class="h2-configurar">Configuración de Usuario</h2>
             <form id="configuracionForm" method="POST" action="{{route('configuracion-realizar')}}" class="form-configurar">
+                @csrf
                 <div class="section-configurar">
                     <label for="nombreUsuario">Nombre de Usuario:</label>
                     <input type="text" id="nombreUsuario" name="nombreUsuario" class="input-configurar" >

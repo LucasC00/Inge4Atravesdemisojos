@@ -29,6 +29,5 @@ Route::get('/recursos-externos', [RecursosController::class, 'mostrarRecursosExt
 Route::get('/configuracion-usuario', [ConfiguracionController::class, 'showConfiguracion'])->name('configuracion-usuario');
 Route::post('/configuracion-realizar', [ConfiguracionController::class, 'configurarUsuario'])->name('configuracion-realizar');
 
-Route::get('/preguntasyrespuestas', [PreguntasController::class, 'showPreguntasyrespuestas'])->name('preguntasyrespuestas');
-Route::get('/preguntas', [PreguntasController::class, 'index'])->name('preguntas');
-Route::get('/preguntas/{id_pregunta}/respuestas', [RespuestasController::class, 'index'])->name('respuestas-por-preguntas');
+Route::get('/preguntas', [PreguntasController::class, 'index']);
+Route::get('/preguntas/{id_pregunta}/respuestas', [RespuestasController::class, 'index']);

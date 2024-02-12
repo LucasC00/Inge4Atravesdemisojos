@@ -7,10 +7,6 @@ use App\Models\Pregunta;
 
 class PreguntasController extends Controller
 {
-    public function showPreguntasyrespuestas(){
-        return view('preguntasyrespuestas');
-    }
-
     public function index()
     {
         $preguntas = Pregunta::with('usuario')->get();

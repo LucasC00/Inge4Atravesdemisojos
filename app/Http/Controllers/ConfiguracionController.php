@@ -26,38 +26,42 @@ class ConfiguracionController extends Controller
         $discapacidadVisual = $request->has('discapacidadVisual'); // Verifica si el checkbox está marcado
         $contrasena = $request->input('contrasena');
 
-        // Construir la consulta de actualización
-        $query = DB::table('usuarios')
-            ->where('nombre_usuario', $nombreusuariosession);
-
-        // Agregar condiciones de actualización basadas en si los campos están presentes
+        // Construir el array de campos a actualizar
+        $camposActualizar = [];
         if (!empty($nombreUsuario)) {
-            $query->update(['nombre_usuario' => $nombreUsuario]);
+            $camposActualizar['nombre_usuario'] = $nombreUsuario;
         }
         if (!empty($correo)) {
-            $query->update(['correo' => $correo]);
+            $camposActualizar['correo'] = $correo;
         }
         if (!empty($edad)) {
-            $query->update(['edad' => $edad]);
+            $camposActualizar['edad'] = $edad;
         }
         if (!empty($sexo)) {
-            $query->update(['sexo' => $sexo]);
+            $camposActualizar['sexo'] = $sexo;
         }
         if (!empty($biografia)) {
-            $query->update(['biografia' => $biografia]);
+            $camposActualizar['biografia'] = $biografia;
         }
-        $query->update(['discapacidad_visual' => $discapacidadVisual]); // Actualiza la discapacidad visual
+        $camposActualizar['discapacidad_visual'] = $discapacidadVisual;
         if (!empty($contrasena)) {
-            $query->update(['contrasena' => $contrasena]);
+            $camposActualizar['contrasena'] = $contrasena;
+        }
+
+        // Verificar si hay campos para actualizar
+        if (empty($camposActualizar)) {
+            return redirect()->route('home')->with('warning', 'No se proporcionaron campos para actualizar.');
         }
 
         // Ejecutar la consulta de actualización
-        $result = $query->update();
+        $result = DB::table('usuarios')
+            ->where('nombre_usuario', $nombreusuariosession)
+            ->update($camposActualizar);
 
         // Verificar el resultado y realizar la redirección correspondiente
         if ($result !== false) {
             // Actualización exitosa
-            if ($nombreusuariosession && $nombreusuariosession !== $nombreUsuario) {
+            if (!empty($nombreUsuario)) {
                 session(['nombreusuariosession' => $nombreUsuario]);
             }
             return redirect()->route('home')->with('success', 'Configuraciones del usuario actualizado exitosamente.');

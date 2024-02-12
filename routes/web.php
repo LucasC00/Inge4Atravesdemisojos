@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
+use app\Http\Controllers\LoginController;
+use app\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index']);
 

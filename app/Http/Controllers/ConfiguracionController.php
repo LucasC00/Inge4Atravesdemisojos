@@ -64,7 +64,7 @@ class ConfiguracionController extends Controller
             }
             return redirect()->route('home')->with('success', 'Configuraciones del usuario actualizado exitosamente.');
         } else {
-            return redirect()->route('home')->with('error', 'Error al configurar usuario');
+            return redirect()->route('login')->with('error', 'Error al configurar usuario');
         }
     }
 }

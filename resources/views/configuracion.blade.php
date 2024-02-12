@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
 
-    <title>My page title</title>
+    <title>Configuracion</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300%7CSonsie+One" rel="stylesheet"
         type="text/css">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>

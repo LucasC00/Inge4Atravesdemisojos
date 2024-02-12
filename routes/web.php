@@ -6,9 +6,6 @@ use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RecursosController;
 use App\Http\Controllers\ConfiguracionController;
-use App\Http\Controllers\PreguntasController;
-use App\Http\Controllers\RespuestasController;
-
 
 // Rutas HomeController
 Route::get('/', [HomeController::class, 'index']);
@@ -28,6 +25,3 @@ Route::get('/recursos-externos', [RecursosController::class, 'mostrarRecursosExt
 // Rutas - ConfiguracionController
 Route::get('/configuracion-usuario', [ConfiguracionController::class, 'showConfiguracion'])->name('configuracion-usuario');
 Route::post('/configuracion-realizar', [ConfiguracionController::class, 'configurarUsuario'])->name('configuracion-realizar');
-
-Route::get('/preguntas', [PreguntasController::class, 'index']);
-Route::get('/preguntas/{id_pregunta}/respuestas', [RespuestasController::class, 'index']);

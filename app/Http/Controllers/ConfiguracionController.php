@@ -54,7 +54,7 @@ class ConfiguracionController extends Controller
 
         // Actualizar los datos del usuario en la base de datos
         $result = DB::table('usuarios')
-            ->where('nombre_usuario', $$nombreusuariosession)
+            ->where('nombre_usuario', $nombreusuariosession)
             ->update($camposActualizar);
 
         if ($result) {

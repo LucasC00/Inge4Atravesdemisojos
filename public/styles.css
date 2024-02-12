@@ -407,3 +407,70 @@ html, body {
   border-radius: 5px;
   cursor: pointer;
 }
+
+/* Preguntas y respuestas */
+
+/* Estilos para el contenido principal */
+main.preguntasyrespuestas {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+/* Estilos para la sección de preguntas y respuestas */
+#preguntas-respuestas {
+  width: 60%;
+}
+
+#preguntas-respuestas h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#preguntas-respuestas ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#preguntas-respuestas li {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+#preguntas-respuestas li:last-child {
+  border-bottom: none;
+}
+
+#preguntas-respuestas h3 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+#preguntas-respuestas p {
+  margin-top: 5px;
+}
+
+/* Estilos para los votos */
+.votos {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.like, .dislike {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.votos span {
+  font-size: 14px;
+}
+
+.votos .like i, .votos .dislike i {
+  font-size: 18px;
+  color: #007bff;
+}
+
+.votos .dislike i {
+  color: #dc3545;
+}

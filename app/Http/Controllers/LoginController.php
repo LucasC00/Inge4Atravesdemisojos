@@ -30,7 +30,7 @@ class LoginController extends Controller
                 // Si la contraseña es correcta, realiza la autenticación
                 // Por ejemplo, puedes guardar el usuario en la sesión
                 session(['usuario' => $usuarioData]);
-                session(['nombreusuariosession' => $$usuarioData->nombre_usuario]);
+                session(['nombreusuariosession' => strval($usuarioData->nombre_usuario)]);
                 // Redirige al usuario a la página de inicio
                 return redirect()->route('home');
             }

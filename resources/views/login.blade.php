@@ -20,13 +20,14 @@
                 <div class="login-titulo">
                     Bienvenido
                 </div>
-                <form id="loginForm" method="POST" action="/login-autenticar">
+                <form id="loginForm" method="POST" action="{{route('login-autenticar')}}">
+                    @csrf
                     <input type="text" name="usuario" id="usuario" class="login-input" placeholder="Usuario" required>
                     <input type="password" id="password" placeholder="Contraseña" name="password" class="login-input" required>
                     <button type="submit" title="Ingresar" name="Ingresar" class="login-button">Login</button>
                 </form>
                 <div class="login-pie-form">
-                    <a href="/registro-usuario">¿No tienes Cuenta? Regístrate</a>
+                    <a href="{{route('login-autenticar')}}">¿No tienes Cuenta? Regístrate</a>
                 </div>
             </div>
         </div>
